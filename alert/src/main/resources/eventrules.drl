@@ -1,0 +1,54 @@
+//created on: 28 May, 2018
+package alert
+import alert.poc.domain.Event;
+import alert.poc.domain.CustomAttribute;
+
+rule "raise alert for eventType Alert"
+
+    when
+         e : Event(sourceSystemName matches "Alert")
+	then
+ 		System.out.println(e);
+		e.setEventType("RaiseAlert");
+		CustomAttribute cA = new CustomAttribute();
+		cA.setKey(e.getEventId().toString());cA.setValue("RaiseAlert");
+		e.getCustomAttributes().add(cA);
+end
+
+
+rule "send sms when severity is low"
+
+    when
+         e :  Event(severity matches "low")
+	then
+ 		System.out.println(e);
+		e.setEventType("SMSAlert");
+		CustomAttribute cA = new CustomAttribute();
+		cA.setKey(e.getEventId().toString());cA.setValue("SMSAlert");
+		e.getCustomAttributes().add(cA);
+end
+
+
+rule "send email when severity is medium"
+
+    when
+         e :  Event(severity matches "medium")
+	then
+ 		System.out.println(e);
+		e.setEventType("EmailAlert");
+		CustomAttribute cA = new CustomAttribute();
+		cA.setKey(e.getEventId().toString());cA.setValue("EmailAlert");
+		e.getCustomAttributes().add(cA);
+end
+
+rule "send shutdown alert when severity is high"
+
+    when
+         e :  Event(severity matches "high")
+	then
+ 		System.out.println(e);
+		e.setEventType("ShutdownAlert");
+		CustomAttribute cA = new CustomAttribute();
+		cA.setKey(e.getEventId().toString());cA.setValue("ShutdownAlert");
+		e.getCustomAttributes().add(cA);
+end

@@ -1,0 +1,22 @@
+package alert
+import alert.poc.domain.Event
+import alert.poc.domain.Kpi
+rule "raise alert for pressure P2"
+when 
+   e : Event()
+   k : Kpi(kpiId.equals("1002") && kpiParams["pressure"].equals("P1")) from e.kpiSet
+then
+ System.out.println(e);
+e.setSendEmail(true);
+end
+rule "raise alert for kpi 1001"
+when 
+   e : Event()
+   k : Kpi(kpiId.equals("1001")) from e.kpiSet
+then
+ System.out.println(e);
+e.setRaiseAlert(true);
+e.setSendSms(true);
+end
+
+ 

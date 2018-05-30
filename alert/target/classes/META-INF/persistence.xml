@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence   http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+
+	<!-- Local Unit -->
+	<persistence-unit name="default" transaction-type="JTA">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+	 <jta-data-source>java:jboss/datasources/PostgresDS</jta-data-source> 
+	 <class>alert.poc.domain.Event</class>
+	 <class>alert.poc.domain.CustomAttribute</class>
+	 <class>alert.poc.domain.DrlRules</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+			<!-- Echo all executed SQL to stdout -->
+			<property name="hibernate.show_sql" value="true"/>
+			<!-- <property name="hibernate.jdbc.batch_size" value="5000"/> -->
+<!-- 			 <property name="hibernate.default_schema" value="OV90PLFM"/>  -->
+			<!--<property name="hibernate.default_schema" value="OV85PLFMINST"/>-->
+			 <property name="hibernate.hbm2ddl.auto" value="update"/> 
+<!-- 			<property name="hibernate.event.merge.entity_copy_observer" value="allow"/> -->
+		</properties>
+	</persistence-unit>
+</persistence>

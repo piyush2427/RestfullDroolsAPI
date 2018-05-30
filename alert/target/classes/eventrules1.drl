@@ -1,0 +1,26 @@
+package alert
+import alert.poc.domain.Event
+rule "raise alert for source system 200"
+when 
+   e : Event(sourceSystemId==200)
+then
+ System.out.println(e);
+e.setRaiseAlert(true);
+end
+
+rule "send sms for temp 30 or above"
+when 
+   e : Event(temperature>=30)
+then
+ System.out.println(e);
+e.setSendSms(true);
+end
+
+rule "send email for temp 40 or above"
+when 
+   e : Event(temperature>=40)
+then
+ System.out.println(e);
+e.setSendEmail(true);
+end
+      
